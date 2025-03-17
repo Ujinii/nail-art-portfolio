@@ -81,10 +81,29 @@ body {
 
 .slider-container {
     position: relative;
-    max-width: 300px;  /* 保持照片区域较小 */
+    max-width: 300px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 30px;
+}
+
+/* 添加左右悬停区域 */
+.slider-container::before,
+.slider-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    z-index: 5;
+}
+
+.slider-container::before {
+    left: 0;
+}
+
+.slider-container::after {
+    right: 0;
 }
 
 .slider {
@@ -122,6 +141,8 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     z-index: 10;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .slider-button:hover {
@@ -135,6 +156,29 @@ body {
 
 .next {
     right: 20px;
+}
+
+/* 悬停时显示按钮 */
+.slider-container:hover .slider-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 分别控制左右按钮的显示 */
+.slider-container:hover .prev {
+    transform: translateY(-50%) translateX(10px);
+}
+
+.slider-container:hover .next {
+    transform: translateY(-50%) translateX(-10px);
+}
+
+.slider-container .prev {
+    transform: translateY(-50%) translateX(-20px);
+}
+
+.slider-container .next {
+    transform: translateY(-50%) translateX(20px);
 }
 
 /* 联系方式区域样式 */
